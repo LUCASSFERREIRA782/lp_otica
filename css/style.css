@@ -1,0 +1,304 @@
+/* =========================================================
+   STYLE.CSS — Lúmen Óptica
+   O Bootstrap cuida de grid, container e utilitários básicos.
+   Tudo que é identidade visual (tipografia, cor, vidro, cards)
+   é definido aqui, sobrepondo os defaults do Bootstrap.
+
+   Refinos desta versão:
+   - Seções SERVIÇOS e GALERIA com contraste azul e bordas.
+   - Cards de serviço com barra de acento prismática no hover.
+   - Halo reforçado atrás da esfera (hero) com legibilidade.
+   ========================================================= */
+
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+h1,h2,h3{ font-family:var(--font-display); font-weight:600; letter-spacing:-0.01em; }
+a{ color:inherit; text-decoration:none; }
+.mono{ font-family:var(--font-mono); }
+
+.section-kicker{
+  font-size:var(--fs-small); color:var(--ink-muted); margin-bottom:10px;
+  text-transform:uppercase; letter-spacing:.08em;
+}
+.section-pad{ padding:var(--space-xl) 0; }
+.container-lumen{ max-width:1180px; margin:0 auto; padding:0 var(--gutter); }
+
+/* ---------- Navbar ---------- */
+.navbar-lumen{
+  position:sticky; top:0; z-index:50;
+  background:rgba(245,248,252,0.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:16px var(--gutter);
+}
+.navbar-lumen .brand{ font-family:var(--font-display); font-weight:700; font-size:1.1rem; }
+.navbar-lumen .nav-links{ display:flex; gap:28px; font-size:.92rem; }
+.navbar-lumen .nav-links a{
+  opacity:.75; position:relative; padding:2px 0;
+  transition:opacity .2s var(--ease);
+}
+.navbar-lumen .nav-links a::after{
+  content:''; position:absolute; left:0; right:0; bottom:-4px;
+  height:2px; border-radius:2px;
+  background:var(--gradient-prism);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.navbar-lumen .nav-links a:hover{ opacity:1; }
+.navbar-lumen .nav-links a:hover::after{ transform:scaleX(1); }
+@media (max-width:860px){ .navbar-lumen .nav-links{ display:none; } }
+
+/* ---------- Botões ---------- */
+.btn-lumen{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:13px 26px; border-radius:999px; font-weight:600; font-size:.92rem;
+  background:var(--ink); color:#fff; border:none; position:relative;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+}
+.btn-lumen:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px -12px rgba(62,139,255,.55);
+  color:#fff;
+}
+.btn-lumen--outline{
+  background:transparent; color:var(--ink); border:1px solid var(--line-strong);
+}
+.btn-lumen--outline:hover{
+  background:rgba(62,139,255,.06);
+  border-color:var(--border-blue-strong);
+  color:var(--ink);
+}
+
+/* ---------- Hero ---------- */
+#hero{ padding:72px 0 var(--space-xl); position:relative; }
+#hero .headline{ font-size:var(--fs-hero); line-height:1.08; max-width:12ch; }
+#hero .lede{ color:var(--ink-muted); font-size:1.1rem; max-width:42ch; margin:20px 0 32px; line-height:1.6; }
+#hero .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+#hero .prism-rule{
+  width:64px; height:3px; border-radius:2px; background:var(--gradient-prism); margin-bottom:18px;
+}
+
+/* Halo atrás da esfera: 3 radiais prismáticas + respiro azul central
+   → destaca a esfera e mantém o texto (à esquerda) legível. */
+#hero-canvas-wrap{
+  position:relative; aspect-ratio:1/1; min-height:320px;
+}
+#hero-canvas-wrap::before{
+  content:''; position:absolute; inset:-12%; z-index:0; border-radius:50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(124,92,255,.30), transparent 55%),
+    radial-gradient(circle at 68% 72%, rgba(34,211,199,.26), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(62,139,255,.22), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.55), transparent 72%);
+  filter:blur(10px);
+  animation:halo-breathe 6s var(--ease) infinite;
+  pointer-events:none;
+}
+#hero-canvas-wrap canvas{ position:relative; z-index:1; width:100% !important; height:100% !important; }
+#hero-canvas-fallback{
+  position:absolute; inset:0; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(124,92,255,.35), transparent 60%),
+             radial-gradient(circle at 65% 70%, rgba(34,211,199,.3), transparent 60%);
+  display:none;
+}
+
+/* ---------- Cartão de vidro (elemento assinatura) ---------- */
+.glass-card{
+  position:relative;
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));
+  border-radius:var(--radius);
+  padding:var(--space-md);
+  transform-style:preserve-3d;
+  will-change:transform;
+  box-shadow:var(--shadow-glass);
+}
+.glass-card::after{
+  content:''; position:absolute; inset:0; border-radius:inherit; padding:1px;
+  background:var(--gradient-prism);
+  background-size:200% 200%;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:0; transition:opacity .35s var(--ease); pointer-events:none;
+}
+.glass-card:hover::after{
+  opacity:1;
+  animation:prism-shimmer 4s linear infinite;
+}
+
+/* =========================================================
+   SERVIÇOS — contraste azul + borda definida + acento prism
+   ========================================================= */
+#servicos{
+  position:relative;
+  background:linear-gradient(180deg, var(--section-blue-a) 0%, var(--section-blue-b) 100%);
+  border-top:1px solid var(--border-blue);
+  border-bottom:1px solid var(--border-blue);
+}
+#servicos::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(62,139,255,.14), transparent 45%),
+    radial-gradient(circle at 88% 100%, rgba(124,92,255,.10), transparent 50%);
+}
+
+#servicos .servico-row{
+  position:relative;
+  display:grid; grid-template-columns:1fr 2fr; gap:var(--space-md);
+  align-items:start;
+  margin-bottom:16px;
+  padding:var(--space-md);
+  background:var(--glass-bg-strong);
+  border:1px solid var(--border-blue);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:
+    border-color .35s var(--ease),
+    box-shadow   .35s var(--ease),
+    background   .35s var(--ease);
+}
+#servicos .servico-row:last-child{ margin-bottom:0; }
+
+/* Barra de acento prismática que cresce no hover */
+#servicos .servico-row::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--gradient-prism);
+  transform:scaleY(0); transform-origin:top;
+  transition:transform .45s var(--ease);
+}
+#servicos .servico-row:hover{
+  border-color:var(--border-blue-strong);
+  background:#fff;
+  box-shadow:var(--shadow-glass-hover);
+}
+#servicos .servico-row:hover::before{ transform:scaleY(1); }
+
+#servicos .servico-nome{ font-family:var(--font-display); font-size:var(--fs-h3); font-weight:600; }
+#servicos .servico-desc{ color:var(--ink-muted); line-height:1.6; max-width:52ch; margin:0; }
+#servicos .servico-preco{
+  font-family:var(--font-mono); font-size:.9rem; color:var(--ink);
+  margin-top:10px; display:inline-block;
+}
+@media (max-width:760px){
+  #servicos .servico-row{ grid-template-columns:1fr; gap:8px; }
+}
+
+/* =========================================================
+   DIFERENCIAIS — fundo azul + borda definida + glow prism
+   ========================================================= */
+#diferenciais{
+  background:linear-gradient(180deg, #EEF3FC 0%, var(--section-blue-a) 100%);
+  border-top:1px solid var(--border-blue);
+  border-bottom:1px solid var(--border-blue);
+}
+#diferenciais .dif-item{
+  height:100%;
+  background:var(--glass-bg-strong);
+  border:1px solid var(--border-blue);
+  border-radius:var(--radius);
+  padding:var(--space-md);
+  transition:
+    border-color .35s var(--ease),
+    box-shadow   .35s var(--ease),
+    background   .35s var(--ease);
+}
+#diferenciais .dif-item:hover{
+  border-color:var(--border-blue-strong);
+  background:#fff;
+  box-shadow:var(--shadow-glass-hover);
+}
+#diferenciais .dif-item p{ color:var(--ink-muted); line-height:1.6; margin:0; }
+#diferenciais .dif-item h3{ font-size:1.05rem; margin-bottom:8px; }
+
+/* =========================================================
+   GALERIA / ARMAÇÕES — contraste azul invertido + borda
+   ========================================================= */
+#galeria{
+  background:linear-gradient(180deg, var(--section-blue-c) 0%, var(--section-blue-d) 100%);
+  border-top:1px solid var(--border-blue);
+  border-bottom:1px solid var(--border-blue);
+  position:relative;
+}
+#galeria::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(34,211,199,.12), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(124,92,255,.10), transparent 50%);
+}
+#galeria .galeria-grid{
+  columns:3 220px; column-gap:18px;
+}
+#galeria .galeria-item{
+  break-inside:avoid; margin-bottom:18px;
+  border-radius:var(--radius-sm);
+  overflow:hidden; position:relative;
+  border:1px solid var(--border-blue);
+  transition:
+    border-color .35s var(--ease),
+    box-shadow   .35s var(--ease);
+}
+#galeria .galeria-item:hover{
+  border-color:var(--border-blue-strong);
+  box-shadow:var(--shadow-prism-glow);
+}
+#galeria .galeria-item .frame-visual{
+  width:100%; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-size:.78rem; color:rgba(255,255,255,.9);
+  letter-spacing:.04em; padding:16px;
+  text-shadow:0 1px 6px rgba(14,20,32,.35);
+}
+
+/* ---------- Avaliações ---------- */
+#avaliacoes{ text-align:left; max-width:680px; margin:0 auto; }
+#avaliacoes .quote{ font-family:var(--font-display); font-size:1.5rem; line-height:1.45; margin-bottom:20px; }
+#avaliacoes .quote-author{ color:var(--ink-muted); font-size:.9rem; }
+#avaliacoes .quote-nav{ display:flex; gap:10px; margin-top:28px; }
+#avaliacoes .quote-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:var(--line-strong); cursor:pointer;
+  transition:background .25s var(--ease), transform .25s var(--ease);
+}
+#avaliacoes .quote-dot:hover{ transform:scale(1.3); }
+#avaliacoes .quote-dot.is-active{
+  background:var(--gradient-prism);
+}
+
+/* ---------- CTA ---------- */
+#cta{ text-align:left; }
+#cta h2{ font-size:var(--fs-h2); max-width:18ch; margin-bottom:14px; }
+#cta p{ color:var(--ink-muted); max-width:46ch; margin-bottom:28px; }
+
+/* ---------- Horários + Mapa ---------- */
+.hours-row{
+  display:flex; justify-content:space-between;
+  padding:12px 0; border-top:1px solid var(--line);
+  font-size:.94rem;
+}
+.hours-row:last-child{ border-bottom:1px solid var(--line); }
+
+/* ---------- Footer ---------- */
+footer{ padding:var(--space-lg) 0; border-top:1px solid var(--line); }
+footer .brand{ font-family:var(--font-display); font-weight:700; }
+footer .footer-links a{ color:var(--ink-muted); font-size:.9rem; margin-right:18px; }
+footer .footer-links a:hover{ color:var(--ink); }
+
+/* ---------- Botão flutuante WhatsApp ---------- */
+#whats-float{
+  position:fixed; bottom:24px; right:24px; z-index:60;
+  width:56px; height:56px; border-radius:50%;
+  background:var(--ink); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem;
+  box-shadow:0 14px 30px -10px rgba(14,20,32,.5);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+#whats-float:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 18px 34px -10px rgba(62,139,255,.6);
+}

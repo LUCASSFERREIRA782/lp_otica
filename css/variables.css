@@ -1,0 +1,73 @@
+/* =========================================================
+   VARIABLES.CSS — Lúmen Óptica
+   Sistema de design baseado em lente/vidro/luz.
+   Paleta predominantemente neutra (branco-gelo + tinta
+   marinha); o gradiente de prisma é usado com moderação.
+   Adicionado: escala de azuis para seções de contraste
+   (serviços, armações, diferenciais).
+   ========================================================= */
+
+:root{
+  /* ---- Base ---- */
+  --bg:            #F5F8FC;
+  --bg-panel:      #FFFFFF;
+  --bg-blue-tint:  linear-gradient(180deg, #E7EFFC 0%, #EEF3FC 100%);
+  --ink:           #0E1420;
+  --ink-muted:     #4E5866;
+  --line:          rgba(14,20,32,0.10);
+  --line-strong:   rgba(14,20,32,0.18);
+
+  /* ---- Azuis de seção (contraste) ---- */
+  --section-blue-a:    #D6E2F5;
+  --section-blue-b:    #C2D4EE;
+  --section-blue-c:    #C7D8F0;
+  --section-blue-d:    #D9E4F6;
+
+  /* ---- Bordas azuis (organizam as seções) ---- */
+  --border-blue:        rgba(62,139,255,0.28);
+  --border-blue-strong: rgba(62,139,255,0.55);
+  --border-blue-soft:   rgba(62,139,255,0.16);
+
+  /* ---- Vidro ---- */
+  --glass-bg:      rgba(255,255,255,0.62);
+  --glass-bg-strong: rgba(255,255,255,0.82);
+  --glass-border:  rgba(255,255,255,0.70);
+  --glass-blur:    18px;
+
+  /* ---- Prisma (acento, uso moderado) ---- */
+  --prism-1: #7C5CFF;
+  --prism-2: #3E8BFF;
+  --prism-3: #22D3C7;
+  --gradient-prism: linear-gradient(100deg, var(--prism-1) 0%, var(--prism-2) 55%, var(--prism-3) 100%);
+  --gradient-prism-slow: linear-gradient(100deg,
+      var(--prism-1) 0%, var(--prism-2) 30%, var(--prism-3) 50%,
+      var(--prism-1) 70%, var(--prism-2) 100%);
+
+  /* ---- Tipografia ---- */
+  --font-display: 'Sora', sans-serif;
+  --font-body:    'IBM Plex Sans', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  --fs-hero:  clamp(2.4rem, 5vw, 4rem);
+  --fs-h2:    clamp(1.6rem, 3.2vw, 2.3rem);
+  --fs-h3:    1.2rem;
+  --fs-body:  1rem;
+  --fs-small: 0.88rem;
+
+  /* ---- Espaçamento ---- */
+  --space-sm: 16px;
+  --space-md: 28px;
+  --space-lg: 56px;
+  --space-xl: 104px;
+  --gutter: 6vw;
+
+  --radius: 20px;
+  --radius-sm: 12px;
+
+  /* ---- Sombras (para dar "peso" ao vidro) ---- */
+  --shadow-glass:       0 10px 30px -18px rgba(14,20,32,.25);
+  --shadow-glass-hover: 0 22px 44px -20px rgba(62,139,255,.45);
+  --shadow-prism-glow:  0 24px 48px -22px rgba(62,139,255,.55);
+
+  --ease: cubic-bezier(.19,1,.22,1);
+}

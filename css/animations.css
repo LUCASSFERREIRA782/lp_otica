@@ -1,0 +1,55 @@
+/* =========================================================
+   ANIMATIONS.CSS — Lúmen Óptica
+   UM momento orquestrado (entrada do hero) + interações que
+   respondem à ação do usuário. Nada de fade-in repetido em
+   cada seção (isso é ruído, não sofisticação).
+   ========================================================= */
+
+@keyframes hero-in{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+#hero .prism-rule{ animation:hero-in .6s var(--ease) both; }
+#hero .headline{ animation:hero-in .7s var(--ease) .08s both; }
+#hero .lede{ animation:hero-in .7s var(--ease) .16s both; }
+#hero .hero-cta{ animation:hero-in .7s var(--ease) .24s both; }
+#hero-canvas-wrap{ animation:hero-in .9s var(--ease) .1s both; }
+
+/* ---- Shimmer do gradiente prismático (bordas e acentos) ---- */
+@keyframes prism-shimmer{
+  0%   { background-position:   0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ---- Pulso suave do halo azul atrás da esfera ---- */
+@keyframes halo-breathe{
+  0%,100% { opacity:.85; transform:scale(1); }
+  50%     { opacity:1;   transform:scale(1.03); }
+}
+
+/* ---- Cards de vidro: transição base ---- */
+.glass-card{
+  transition:
+    transform .15s ease-out,
+    border-color .35s var(--ease),
+    box-shadow   .35s var(--ease),
+    background   .35s var(--ease);
+}
+
+/* ---- Foco visível (acessibilidade) ---- */
+a:focus-visible,
+button:focus-visible,
+.glass-card:focus-within{
+  outline: 2px solid var(--prism-2);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce){
+  #hero .prism-rule, #hero .headline, #hero .lede,
+  #hero .hero-cta, #hero-canvas-wrap{
+    animation:none; opacity:1; transform:none;
+  }
+  .glass-card{ transition:none; }
+  #hero-canvas-wrap::before{ animation:none; }
+}

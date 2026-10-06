@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lúmen Óptica</title>
+<meta name="description" content="Exame de vista digital, ajuste 3D de armação e lentes de alta tecnologia em Santo André.">
+<meta name="theme-color" content="#0E1420">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+
+<script type="application/ld+json">
+{ "@context":"https://schema.org", "@type":"Optician", "name":"Lúmen Óptica",
+  "address":{"@type":"PostalAddress","addressLocality":"Santo André","addressRegion":"SP","addressCountry":"BR"} }
+</script>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<header class="navbar-lumen d-flex align-items-center justify-content-between">
+  <span class="brand" data-nome>Lúmen Óptica</span>
+  <nav class="nav-links">
+    <a href="#servicos">Serviços</a>
+    <a href="#galeria">Armações</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a href="#" class="btn-lumen btn-lumen--outline" data-whats-link target="_blank" rel="noopener">Agendar</a>
+</header>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+  <div class="container-lumen row align-items-center">
+    <div class="col-lg-6">
+      <div class="prism-rule"></div>
+      <h1 class="headline" data-slogan>Clareza começa no olhar certo</h1>
+      <p class="lede" data-descricao>Descrição da ótica.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn-lumen" data-whats-link target="_blank" rel="noopener">Agendar exame</a>
+        <a href="#servicos" class="btn-lumen btn-lumen--outline">Ver serviços</a>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div id="hero-canvas-wrap">
+        <div id="hero-canvas-fallback"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ========== SERVIÇOS ========== -->
+  <section id="servicos" class="section-pad">
+    <div class="container-lumen">
+      <p class="section-kicker">O que fazemos</p>
+      <h2 class="mb-4">Serviços</h2>
+      <div id="servicos-list"></div>
+    </div>
+  </section>
+
+  <!-- ========== DIFERENCIAIS ========== -->
+  <section id="diferenciais" class="section-pad">
+    <div class="container-lumen">
+      <p class="section-kicker">Por que a Lúmen</p>
+      <h2 class="mb-4">Diferenciais</h2>
+      <div class="row" id="diferenciais-list"></div>
+    </div>
+  </section>
+
+  <!-- ========== GALERIA ========== -->
+  <section id="galeria" class="section-pad">
+    <div class="container-lumen">
+      <p class="section-kicker">Acervo</p>
+      <h2 class="mb-4">Armações</h2>
+      <div class="galeria-grid" id="galeria-grid"></div>
+    </div>
+  </section>
+
+  <!-- ========== AVALIAÇÕES ========== -->
+  <section class="section-pad">
+    <div class="container-lumen">
+      <div id="avaliacoes">
+        <p class="quote" id="quote-text"></p>
+        <p class="quote-author" id="quote-author"></p>
+        <div class="quote-nav" id="quote-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section-pad">
+    <div class="container-lumen">
+      <div id="cta">
+        <h2>Pronto pra enxergar com mais nitidez?</h2>
+        <p>Agende uma avaliação e conheça o ajuste 3D de armação de perto.</p>
+        <a href="#" class="btn-lumen" data-whats-link target="_blank" rel="noopener">Agendar no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HORÁRIOS + MAPA ========== -->
+  <section class="section-pad">
+    <div class="container-lumen row">
+      <div class="col-md-6">
+        <p class="section-kicker">Horários</p>
+        <h2 class="mb-4">Quando estamos abertos</h2>
+        <div id="horarios-list"></div>
+      </div>
+      <div class="col-md-6">
+        <p class="section-kicker">Localização</p>
+        <h2 class="mb-4" data-endereco>Endereço</h2>
+        <a href="#" class="btn-lumen btn-lumen--outline" data-maps-link target="_blank" rel="noopener">Abrir no mapa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTATO ========== -->
+  <section id="contato" class="section-pad">
+    <div class="container-lumen">
+      <p class="section-kicker">Contato</p>
+      <h2 class="mb-4">Fale com a gente</h2>
+      <a href="#" class="btn-lumen" data-whats-link target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container-lumen d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <span class="brand" data-nome>Lúmen Óptica</span>
+    <div class="footer-links">
+      <a href="#" data-whats-link target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <span class="mono" style="font-size:.78rem;color:var(--ink-muted);">© <span data-footer-ano></span></span>
+  </div>
+</footer>
+
+<a href="#" id="whats-float" data-whats-link target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/render.js"></script>
+<script src="js/tilt3d.js"></script>
+<script src="js/hero3d.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
